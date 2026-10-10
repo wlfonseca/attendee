@@ -193,7 +193,8 @@ class CalendarSyncHandler:
         """
         try:
             # Step 0: Refresh notification channels
-            self._refresh_notification_channels()
+            if os.getenv("DISABLE_CALENDAR_NOTIFICATION_CHANNELS") != "true":
+                self._refresh_notification_channels()
 
             # Step 1: Set time window
             now = timezone.now()
